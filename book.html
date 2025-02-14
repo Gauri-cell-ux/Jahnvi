@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by Gauri Yadav</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./cover.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />Gauri Special Edition
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Special Beginning ❤️✨</h2>
+
+       <p>Happy Valentines Day my baby. October 10th wasn't just a date, it was one of the biggest moments of my life.
+
+        From the first time that I saw you, everything about you stood out—your smile, your charm, and the effortless way you make the world around you brighter.
+        
+        I love you from the bottom of my heart Jahnvi. This is just a little surprise for you. I hope you like it my baby. I love you so much. 💖
+        
+        I hope there aren't any bugs in this, if there are then please forgive me and sit on my lap and teach me how to code. </p>
+
+          <p>
+            My wife, my girlfriend <br />Thank you for everything
+            you've done for me ....
+          </p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>From Strangers to Something Special ❤️✨</h2>
+          <p>
+            It’s incredible to think how, just a few years ago, I didn’t even know you. Meeting you through Bumble was a moment of fate that I’ll always be grateful for.
+
+At first, I wasn’t sure about how we’d connect, what we’d talk about, or what kind of person you’d be. But I am really happy that I took my chances.
+
+You’re absolutely amazing, the best thing that has ever happened to me 💖
+
+Your words, your kindness, and the way you make me smile is just something nobody else can ever do. I never expected to meet someone like you, but now, I can’t imagine not having you in my life.
+
+Maybe it was destiny, or maybe it was just luck—but whatever it was, I’m glad it brought me to you. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./1.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Magic of Jahnvi Hora ✨💖</h2>
+          <p>
+            You are so beautiful my baby, words can't capture how truly beautiful you are. The sparkle of your eyes, the warmth of your smile, and the effortless way you light up every moment. Every little thing about you feels so perfect, so mesmerizing.
+
+            You are truly a masterpiece, a work of art.
+            
+            It’s as if the universe took its time, carefully shaping someone as wonderful as you, just to make the world a little brighter. And trust me, you do. Every single day. 💕
+            
+            Your presence brings light to the darkest of my days. The way you carry yourself, the kindness in your heart, and the purity in your soul make you even more special. It’s not just about how beautiful you look—it’s about how beautiful you truly are.
+            
+            Every time I see you, I’m reminded that some things in life are simply magical, and you, without a doubt, are one of them. ✨💖
+          </p>
+        </div>
+        <div class="back">
+          <h2>My strong baby 💫✨</h2>
+          <p>
+            Beyond your beauty, what truly stands out is how hard working and passionate you are. You’re not just someone to admire for how you look—you’re an inspiration. The way you look after everybody and give your best in everything makes me respect you even more.
+
+You are truly an amazing person.
+
+You are the best daughter, wife, girlfriend, sister. I don't know how I got this lucky Jahnvi. You inspire me to become a better person with every single passing day. I love you. 💖✨
+
+You put your heart and soul into everything you do, you make sure that you prioritise others and barely ever think about yourself. You are so freaking smart, watching you grow and achieve so much makes me so proud. 🌟
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Best Part of My Day💖</h2>
+          <p>
+            Talking to you has become one of the highlights of my day. Every time I see a message from you, my heart has a sigh of relief. No matter how my day is going, our conversations make everything feel lighter and happier.
+
+            You have a way of making the simplest moments special.
+            
+            Even now while I am typing this, I am waiting for you to call and to hear about your day. This is what keeps me going every day, the best thing.
+            
+            I never knew that a simpel conversation could mean so much, but with you, it does. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./2.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>A Wish from my Heart 💫💖</h1>
+          <p>
+            I wish to marry you as soon as possible my baby, and I just know that this will be the most special moment of my life. The day where everything will finally be in place.
+
+            I know we're meant to be, meant to stay, meant to love each other forever. You mean the most to me.
+            
+            I will marry you in the presence of most of our ghar wale and you wearing the best lehnga that you want 💕
+            
+            Tenu leke mai jawaga, dil de ke mai jawaga. Chal ab jaldi se ye book ghar walo ko dikha de aur btade sab, kara hi dege shaadi.. itni mehnat ki hai maine. ✨
+          </p>
+        </div>
+        <div class="back">
+          <h1>Always Here for You 💖✨</h1>
+          <p>
+            You are my wife, and I want you to know that I’ll always be here for you, no matter what. Whatever you may need in life, I'll make sure you have it..
+
+            Whether it is meeting BTS, or going to mere ghar, or just some sex, I'll make sure you have it.
+            
+            Life can be unpredictable, but I hope you never feel alone. Whether it’s a good day or a tough one, I’ll always be here to cheer you on, to remind you how amazing you are.
+            
+            You deserve nothing but happiness, and i'll make sure you have it.  No matter where life takes us, just know that you’ll always have someone who cares—someone who truly believes in you. 💕
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>My baby ✨💖</h2>
+          <p>
+            Can we take a moment to appreciate how effortlessly stunning you look in anything you wear? It’s not just the way you dress up but your confidence, just how fucking amazing you are in every way.
+
+            You are the MOST BREATHTAKINGLY BEAUTIFUL WOMAN i've ever laid my eyes on.
+            
+            There’s something about you that draws people in, literally everyone loves you Jahnvi. I don't see a person who could ever NOT like you, you are just that amazing.
+            
+            You are the definition of AURA. The definition of good vibes. Everything becomes so much better just from your presence. 
+            
+            I am so lucky that i'll get to spend every night and every morning next to you. To have dinner with you, to have kids with you, to do life with you. 💖✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Stay with me✨💖</h2>
+          <p>
+            This valentines day my only request to you would be that you stay with me forever and ever meri jaan. Don't ever leave me and I promise I'll treat you the best that I possibly can.
+
+           You complete me, without you I am nothing.
+            
+            I'd do anything for you jahnvi. I'd fight the world, my parents, your parents, every single being in existence if I have to ... just so I end up with you. Sabko pyaar se hi mana loogi khair.
+            
+            Tujhsey bas itni hi guzaarish hai ki hamesha bas saath khadi rahioyo, baaki sab to life mai hojayega manage.
+            
+            I love you my wife 💕✨
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <div class="page">
+        <div class="front">
+          <h2>Grateful for You🌹❤</h2>
+          <p>
+            Thank you god, thank you bumble, thank you instagram, thank you whatsapp... sabne bhot effort kare hai hamare relationship ke lie.
+
+            You are the greatest gift of my life.
+            
+            All along I had wondered why god was not listening to me why I was not getting the one thing I needed but now i realise- good things take time...
+            
+            Mere sabr ka fal bhot hi zyda meetha hai.. in every way 💕
+          </p>
+        </div>
+        <div class="back">
+          <h2>Will You Be Mine? ❤️✨</h2>
+          <p>Ye marriage proposal to nahi hai but would you like to RENEW your yearly valentines membership... khair ab to poora ho bhi gaya valentines so jaldi jawab do.
+
+            Mai apna dedeti hu... I would LOVE to be your valentine puchu.. i love you so much yaar meri jaan.
+            
+            I don’t know what the future holds, but I do know one thing—I’d love to have you by my side. So, here’s my question, straight from the heart…
+            
+            Will you be mine? 💖💕 </p>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="front">
+          <img src="./4.png" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>MY Cutest Baby</h3>
+          <p>
+            I LOVE YOU<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
